@@ -25,28 +25,13 @@ def get_fashion():
     results = engine.execute(sql_query_string, params)
     return json.dumps([(dict(row.items())) for row in results])
 
-def create_query(perameter):
-    need_or_operator = False
-    query_string = "SELECT recipe_name, recipe_link, category FROM RecipeData"
+def create_query(parameter):
+    query_string = "SELECT * FROM fashion"
     params = ()
     # we will set convention to always add a space at the BEGINNING of the sql chunk we're adding
-    if name != "":
-        query_string += " WHERE recipe_name LIKE %s"
-        need_or_operator = True
-        params += ("%"+name+"%",)
-    if category != "":
-        if need_or_operator:
-            query_string += " OR category = %s"
-        else:
-            query_string += " WHERE category = %s"
-            need_or_operator = True
-        params += (category,)
-    if url != "":
-        if need_or_operator:
-            query_string += " OR recipe_link LIKE %s"
-        else:
-            query_string += " WHERE recipe_link LIKE %s"
-        params += ("%"+url+"%",)
+    if parameter != "":
+        query_string += " WHERE category LIKE %s"
+        params += ("%"+parameter+"%",)
     # we're adding this limit to cover the scenario the user didn't supply any
     # paramters. We don't want to return ALL the rows in our DB!
     query_string += " limit 5"
