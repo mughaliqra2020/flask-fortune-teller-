@@ -10,13 +10,21 @@ import sys
 
 app = Flask(__name__)
 
+recipe_data = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
+    username="iqram2020",
+    password="fun11116",
+    hostname="iqram2020.mysql.pythonanywhere-services.com",
+    databasename="iqram2020$MyData")
+
+engine = create_engine(recipe_data)
+
 @app.route('/', methods=["GET"])
 def index():
     return render_template("main_page.html")
 
 @app.route('/search', methods=["GET"])
 def get_fashion():
-    search = request.args.get(string="search")
+    search = request.args.get("search")
     # below is how we can print to our error log, will probably remove this once debugging is complete
     sql_query_string, params = create_query(search)
     # below is a good debug line, but will probably remove once debugging is complete
