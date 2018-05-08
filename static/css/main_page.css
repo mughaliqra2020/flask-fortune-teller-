@@ -1,0 +1,12 @@
+p{
+    color:black;
+}
+h1{
+    color:purple;
+}
+p, h1{ background-color:white;
+}
+body{
+    background-image:url(https://st.depositphotos.com/3397013/4821/i/950/depositphotos_48218293-stock-photo-wet-watercolor-ombre-background.jpg);
+    background-size: 25% ;
+}
